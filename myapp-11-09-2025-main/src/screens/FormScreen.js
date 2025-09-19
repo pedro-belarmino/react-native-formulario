@@ -30,6 +30,17 @@ export default function FormScreen() {
     setIdade("");
   };
 
+function handleExcluirPessoa() {
+  // Verifica se o array tem elementos
+  if (pessoas.length > 0) {
+    const novoArray = [...pessoas]; // Cria uma cópia do array
+    novoArray.pop(); // Remove o último item
+    setPessoas(novoArray); // Atualiza o estado com a nova cópia
+  } else {
+    Alert.alert("Aviso", "Não há registros para excluir!");
+  }
+}
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Cadastro de Pessoa</Text>
@@ -50,7 +61,8 @@ export default function FormScreen() {
       />
 
       <Button title="Adicionar Pessoa" onPress={handleAddPessoa} />
-
+      <br/>
+<Button title="Excluir Ultimo Registro" onPress={handleExcluirPessoa}/>
       <Text style={styles.subtitle}>Lista de Pessoas:</Text>
       <FlatList
         data={pessoas}
